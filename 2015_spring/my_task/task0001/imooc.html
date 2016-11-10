@@ -1,91 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<title>慕课网</title>
-	<style>
-		/*magin负值的用法*/
-		.box, .wrap { width: 1200px; margin: auto; background-color: orange; }
-		.wrap { overflow: hidden; height: 300px; }
-		.ul { overflow: hidden; margin-right: -20px; }
-		.li { width: 386.66px; height: 300px; margin-right: 20px; background-color: green; float: left; }
-		li { list-style: none; }
-		* {
-		    margin: 0;
-		    padding: 0;
-/*		  -webkit-box-sizing: border-box;
-		     -moz-box-sizing: border-box;
-		          box-sizing: border-box;*/
-		}
-		.margin { height: 100px; margin: 100px -30px; background-color: red;}
-		/*margin影响元素宽度*/
-		.margin_box { width: 1200px; overflow: hidden; resize: vertical; margin: 0 auto;}
-		.child_orange,
-		.child_green { float: left; width:500px; margin-bottom: -600px; padding-bottom: 600px; }
-		.child_orange { background-color: orange; }
-		.child_green { background-color: green; }
+    <meta charset="UTF-8" />
+    <title>慕课网</title>
+    <style>
+        /*magin负值的用法*/
+        .box, .wrap { width: 1200px; margin: auto; background-color: orange; }
+        .wrap { overflow: hidden; height: 300px; }
+        .ul { overflow: hidden; margin-right: -20px; }
+        .li { width: 386.66px; height: 300px; margin-right: 20px; background-color: green; float: left; }
+        li { list-style: none; }
+        * {
+            margin: 0;
+            padding: 0;
+/*          -webkit-box-sizing: border-box;
+             -moz-box-sizing: border-box;
+                  box-sizing: border-box;*/
+        }
+        .margin { height: 100px; margin: 100px -30px; background-color: red;}
+        /*margin影响元素宽度*/
+        .margin_box { width: 1200px; overflow: hidden; resize: vertical; margin: 0 auto;}
+        .child_orange,
+        .child_green { float: left; width:500px; margin-bottom: -600px; padding-bottom: 600px; }
+        .child_orange { background-color: orange; }
+        .child_green { background-color: green; }
 
-		.eye { margin: auto;
-			   width: 150px; height: 150px;
-			   padding: 10px;
-			   border: 10px solid;
-			   border-radius: 50%;
-			   background-color: currentColor;
-			   background-clip: content-box;
-		}
+        .eye { margin: auto;
+               width: 150px; height: 150px;
+               padding: 10px;
+               border: 10px solid;
+               border-radius: 50%;
+               background-color: currentColor;
+               background-clip: content-box;
+        }
 
-		.line_tri {
-			margin: auto;
-		    width: 150px;
-		    height: 30px;
-		    padding: 15px 0;
-		    border-top: 30px solid;
-		    border-bottom: 30px solid;
-		    background-color: currentColor;
-		    background-clip: content-box;
-		}
+        .line_tri {
+            margin: auto;
+            width: 150px;
+            height: 30px;
+            padding: 15px 0;
+            border-top: 30px solid;
+            border-bottom: 30px solid;
+            background-color: currentColor;
+            background-clip: content-box;
+        }
 
-		.box50_wrap { margin: auto; width: 400px; height: 600px; }
-		.box50 { padding: 50%; background-color: green; }
-	</style>
+        .box50_wrap { margin: auto; width: 400px; height: 600px; }
+        .box50 { padding: 50%; background-color: green; }
+/*双飞燕*/
+        .center-wrap { width: 100%; height: 100px; background-color: red; float: left; }
+        .center { margin: 0 100px 0 150px; }
+        .left { width: 150px; height: 100px; background-color: blue; float: left; margin-left: -100%; position: relative; }
+        .right { width: 100px; height: 100px; background-color: green; float: left; margin-left: -100px; position: relative; }
+/*圣杯布局*/
+        .container {padding-left: 200px; padding-right: 150px;}
+        .column {float: left; height: 80px; position: relative;}
+        #mid {background-color: red; width: 100%;}
+        #l {right: 200px; background-color: blue; width: 200px; margin-left: -100%;}
+        #r {margin-right: -150px; background-color: green; width: 150px; }
+    </style>
 </head>
 <body>
-	<div class="box">
-		<div class="ul">
-			<div class="li">列表1</div>
-			<div class="li">列表2</div>
-			<div class="li">列表3</div>
-		</div>
-	</div>
-	<br />
-	<div class="box">
-		<ul class="ul">
-			<li class="li">1</li>
-			<li class="li">2</li>
-			<li class="li">3</li>
-		</ul>
-	</div>
-	<br />
-	<div class="wrap">
-		<div class="margin">fwfwafwefwe
-			gwegwgweg
-		</div>
-	</div>
-	<br />
-	<div class="margin_box">
-	 	<div class="child_orange">左黄</div>
-	 	<div class="child_green">右绿</div>
-	 	<div class="child_orange">左黄</div>
-	 	<div class="child_green">右绿</div>
-	 	<div class="child_orange">左黄</div>
-	</div> 
-	<br />
-	<div class="eye"></div>
-	<br />
-	<div class="line_tri"></div>
-	<br />
-	<div class="box50_wrap">
-		<div class="box50"></div>
-	</div>
+    <div class="box">
+        <div class="ul">
+            <div class="li">列表1</div>
+            <div class="li">列表2</div>
+            <div class="li">列表3</div>
+        </div>
+    </div>
+    <br />
+    <div class="box">
+        <ul class="ul">
+            <li class="li">1</li>
+            <li class="li">2</li>
+            <li class="li">3</li>
+        </ul>
+    </div>
+    <br />
+    <div class="wrap">
+        <div class="margin">fwfwafwefwe
+            gwegwgweg
+        </div>
+    </div>
+    <br />
+    <div class="margin_box">
+         <div class="child_orange">左黄</div>
+         <div class="child_green">右绿</div>
+         <div class="child_orange">左黄</div>
+         <div class="child_green">右绿</div>
+         <div class="child_orange">左黄</div>
+    </div> 
+    <br />
+    <div class="eye"></div>
+    <br />
+    <div class="line_tri"></div>
+    <br />
+    <div class="box50_wrap">
+        <div class="box50"></div>
+    </div>
+    <br />
+    <!-- 双飞燕可实现两列和三列布局 -->
+    <div class="center-wrap">
+        <div class="center">div-mid</div>
+    </div>
+    <div class="left">div-left</div>
+    <div class="right">div-right</div>
+    <br />
+    <p>圣杯</p>
+    <br />
+    <!-- 圣杯布局 -->
+    <div class="container">
+        <div id="mid" class="column">div-mid</div>
+        <div id="l" class="column">div-left</div>
+        <div id="r" class="column">div-right</div>
+    </div>
 </body>
 </html>
