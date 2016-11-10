@@ -13,7 +13,7 @@ body {
 }
 
 header {
-    position: relative;
+    /*position: relative;*/
     width: 100%;
     height: 80px;
     background-color: purple;
@@ -53,7 +53,7 @@ nav a {
     line-height: 30px;
     font-size: 14px;
     font-family: '宋体', sans-serif;
-    color: #fff;
+    color: #FFF;
 }
 
 #git_pic {
@@ -86,7 +86,7 @@ nav a {
 .banner_info h1 {
     font-size: 14px;
     text-align: right;
-    color: #fff;
+    color: #FFF;
 }
 
 .banner_info p {
@@ -94,7 +94,7 @@ nav a {
     font-size: 12px;
     line-height: 150%;
     text-indent: 2em;
-    color: #fff;
+    color: #FFF;
 }
 
 .article {
@@ -109,7 +109,7 @@ nav a {
     float: left;
     margin-top: 10px;
     width: 320px;
-    background-color: #fff;
+    background-color: #FFF;
 }
 
 .article_mid_box,
@@ -134,7 +134,7 @@ nav a {
     margin-top: 100px;
     padding-bottom: 100px;
     width: 100%;
-    background-color: #fff;
+    background-color: #FFF;
 }
 
 .portrait {
@@ -144,9 +144,9 @@ nav a {
 
 .resume img {
     margin-top: -50px;
+    border-radius: 50%;
     width: 160px;
     height: 160px;
-    border-radius: 50%;
 }
 
 .resume_wrap {
@@ -174,7 +174,6 @@ footer {
     width: 100%;
     height: 400px;
     background-color: black;
-    /*color: #fff;*/
 }
 
 .footer_nav {
@@ -190,12 +189,8 @@ footer {
 }
 
 .footer_link {
-    /*overflow: hidden;*/
-    /*margin-top: 20px;*/
-    /*margin-bottom: 30px;*/
     margin: 0 auto;
     width: 980px;
-    /*height: 290px;*/
 }
 
 .footer_link_wrap {
@@ -205,7 +200,7 @@ footer {
     width: 110px;
     height: 250px;
     font-size: 14px;
-    color: #fff;
+    color: #FFF;
 }
 
 .footer_link_wrap dt {
@@ -213,21 +208,21 @@ footer {
 }
 
 .footer_link_wrap a {
-    color: #fff;
-    text-decoration: none;
     display: block;
     margin-top: 5px;
+    text-decoration: none;
     font-size: 12px;
     font-weight: 300;
+    color: #FFF;
 }
 
 .copyright {
     clear: both;
+    margin: 0 auto;
     width: 110px;
-    color: #fff;
     font-size: 12px;
     font-family: 'Helvetica';
-    margin: 0 auto;
+    color: #FFF;
 }
 
 .copyright img {
@@ -296,7 +291,7 @@ footer {
     width: 50px;
     font-size: 25px;
     font-family: 'Helvetica';
-    color: #fff;
+    color: #FFF;
     background: #ccc;
     cursor: pointer;
 }
@@ -345,7 +340,7 @@ footer {
     font-weight: 600;
 }
 .today{
-    color: #fff;
+    color: #FFF;
     background-color: #4169E1;
     font-weight: 600;
 }
@@ -552,7 +547,7 @@ span.current_page {
     border-radius: 15px;
     width: 25px;
     height: 25px;
-    border: 1px solid #fff;
+    border: 1px solid #FFF;
 }
 
 .gallery p {
@@ -615,7 +610,7 @@ span.current_page {
     line-height: 16px;
     font-size: 12px;
     font-weight: 400;
-    color: #fff;
+    color: #FFF;
     border-radius: 10px;
     background: #4169E1;
     text-align: center;
@@ -716,7 +711,7 @@ span.current_page {
     font-size: 14px;
     line-height: 25px;
     text-align: center;
-    background-color: #fff;
+    background-color: #FFF;
 }
 
 .ab_name { top: 130px; text-indent: 2em;}
