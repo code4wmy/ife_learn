@@ -33,13 +33,11 @@
             aLi[i].onmouseover = function() {
                 for(var i = 0; i < aLi.length; i++) {
                     aLi[i].className = "";
+                    aDiv[i].className = "hide";
                 }
                 this.className = "active";
-                for(var j = 0; j < aDiv.length; j++) {
-                    aDiv[j].className = "hide";
-                }
                 aDiv[this.index].className = "show";
-            }        
+            }
         }
     }
     
