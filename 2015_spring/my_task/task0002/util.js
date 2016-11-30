@@ -91,3 +91,50 @@ console.log(abObj.b.b1[0]);
 
 console.log(tarObj.a);      // 1
 console.log(tarObj.b.b1[0]);    // "hello"
+
+// guess word
+function play() {
+    var words = ["java", "html", "css", "python", "node", "swift"];
+    var word = words[Math.floor(Math.random() * words.length)];
+
+    var stringArray = [];
+    for (var i=0; i<word.length; i++) {
+        stringArray[i] = "_";
+    }
+
+    var remainingLetters = word.length;
+
+    while(remainingLetters > 0) {
+        alert(stringArray.join(" "));
+
+        var guess = prompt("Guess a letter, or click Cancel to stop").toLowerCase();
+        if (guess === null) {
+            alert("The word was " + word);
+            break;
+        }
+        else if (guess.length !== 1) {
+            alert("Please input a singer letter.");
+        }
+        else {
+            for (var j=0; j<word.length; j++) {
+                if (word[j] === guess && stringArray[j] !== guess) {
+                    stringArray[j] = guess;
+                    if (--remainingLetters === 0) {
+                        alert(stringArray.join(" "));
+                        alert("Good Job!The word was " + word);
+                    }
+                }
+            }
+        }
+    }
+}
+
+function game() {
+    do {
+        play();
+        var playAgain = confirm("Play again?")
+    }
+    while (playAgain);
+}
+
+// game();
