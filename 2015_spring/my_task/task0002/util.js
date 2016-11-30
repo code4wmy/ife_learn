@@ -138,3 +138,29 @@ function game() {
 }
 
 // game();
+
+
+function simpleTrim(str) {
+    if (typeof str === 'string') {
+        for (var i = 0; i<str.length; i++) {
+            if (str[i] !== ' ') {
+                var lt = i;
+                break;
+            }
+        }
+
+        for (var j = str.length - 1; j > -1; j--) {
+            if (str[j] !== ' ') {
+                var rt = j;
+                break;
+            }
+        }
+
+        return str.slice(lt, rt + 1);
+    }
+    return false;
+}
+
+function trim(str) {
+    return str.replace(/(^\s+)|(\s+$)/, '');
+}
