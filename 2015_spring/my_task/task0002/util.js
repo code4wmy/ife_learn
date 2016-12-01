@@ -164,3 +164,25 @@ function simpleTrim(str) {
 function trim(str) {
     return str.replace(/(^\s+)|(\s+$)/, '');
 }
+
+// 实现一个遍历数组的方法，针对数组中每一个元素执行fn函数，并将数组索引和元素作为参数传递
+var arr = ['java', 'c', 'php', 'html'];
+
+function each(arr, fn) {
+    if (Array.isArray(arr) && typeof fn === 'function') {
+        for (var i = 0; i < arr.length; i++) {
+            fn(arr[i], i);
+        }
+    }
+}
+
+function output(item, index) {
+    console.log(index + ': ' + item);
+}
+
+// 获取一个对象里面第一层元素的数量，返回一个整数
+function getObjectLength(obj) {
+    if (Object.prototype.toString.call(obj) === '[object Object]') {
+        return Object.keys(obj).length;
+    }
+}
