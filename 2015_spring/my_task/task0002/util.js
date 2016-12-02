@@ -186,3 +186,51 @@ function getObjectLength(obj) {
         return Object.keys(obj).length;
     }
 }
+
+// 判断是否为邮箱地址,字母开头
+function isEmail(emailStr) {
+    return /^[a-zA-Z\d]+[\w.!#$%^&*()]*@[\d\w]+(\.[a-zA-Z]{2,}){1,2}$/.test(emailStr);
+}
+
+// 判断是否为手机号
+function isMobilePhone(phone) {
+    return /^(1[3-9]\d{9})$/.test(phone);
+}
+
+
+
+
+// 为element增加一个样式名为newClassName的新样式
+function addClass(element, newClassName) {
+    if (element.nodeType === 1 && typeof newClassName === 'string') {
+        var ourClass = element.getAttribute('class');
+        if (ourClass === null) {
+            element.setAttribute('class', newClassName);
+        }
+        else {
+            if (ourClass.split(' ').indexOf(newClassName) === -1) {
+                element.setAttribute('class', ourClass + ' ' + newClassName);
+            }
+        }
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+// 移除element中的样式oldClassName
+function removeClass(element, oldClassName) {
+    // your implement
+}
+
+// 判断siblingNode和element是否为同一个父元素下的同一级的元素，返回bool值
+function isSiblingNode(element, siblingNode) {
+    // your implement
+}
+
+// 获取element相对于浏览器窗口的位置，返回一个对象{x, y}
+function getPosition(element) {
+    // your implement
+}
+// your implement
