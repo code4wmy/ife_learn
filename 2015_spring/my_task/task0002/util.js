@@ -198,7 +198,16 @@ function isMobilePhone(phone) {
 }
 
 
-
+// 判断元素是否有类名
+function hasClass(element, className) {
+    var classArr = element.className.split(' ');
+    if (classArr.indexOf(className) !== -1) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 
 // 为element增加一个样式名为newClassName的新样式
 function addClass(element, newClassName) {
@@ -219,18 +228,54 @@ function addClass(element, newClassName) {
     }
 }
 
+function addClass(element, newClassName) {
+    if (!hasClass(element, newClassName)) {
+        element.className += ' ' + newClassName;
+    }
+}
+
 // 移除element中的样式oldClassName
 function removeClass(element, oldClassName) {
-    // your implement
+    if (element.nodeType === 1 && typeof oldClassName === 'string') {
+        var ourClass = element.getAttribute('class');
+        if (ourClass !== null) {
+            var classArr = ourClass.split(' ');
+            var oldClassPos = classArr.indexOf(oldClassName);
+            if (oldClassPos !== -1) {
+                classArr.splice(oldClassName, 1);
+                element.setAttribute('class', classArr.join(' '));
+            }
+        }
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+
+function removeClass(element, oldClassName) {
+    if (hasClass(element, oldClassName)) {
+        element.className = element.className.replace(oldClassName, '');
+    }
 }
 
 // 判断siblingNode和element是否为同一个父元素下的同一级的元素，返回bool值
 function isSiblingNode(element, siblingNode) {
-    // your implement
+    var elementArr = element.parentNode.childNodes;
+    for (var i = 0; i < elementArr.length; i++) {
+        if (elementArr[i] === siblingNode) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
 
 // 获取element相对于浏览器窗口的位置，返回一个对象{x, y}
 function getPosition(element) {
     // your implement
 }
-// your implement
+
+//js代码放在html最后面这样才可以getElements，放在前面标签都没有加载会为空
