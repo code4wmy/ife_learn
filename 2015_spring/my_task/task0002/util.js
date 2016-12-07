@@ -64,7 +64,7 @@ function isObject(obj){
 
 function cloneObject(obj){
     var cloneObj;
-    cloneObj=(obj instanceof Array) ? []:{}; //判断对象类型，新建克隆对象
+    cloneObj=(Array.isArray(obj)) ? []:{}; //判断对象类型，新建克隆对象
     for(var i in obj){
         if(obj.hasOwnProperty(i)){
             cloneObj[i]=isObject(obj[i]) ? cloneObject(obj[i]):obj[i];
@@ -72,6 +72,28 @@ function cloneObject(obj){
     }
     return cloneObj;
 }
+
+/*另一种代码
+function cloneObject(src) {
+    // your implement
+    var o; //result
+    if (Object.prototype.toString.call(src) === "[object Array]") {
+        o = []; //判断是否是数组，并赋初始值
+    } else {
+        o = {};
+    }
+    for (var i in src) { //遍历这个对象
+        if (src.hasOwnProperty(i)) { //排出继承属性
+            if (typeof src[i] === "object") {
+                o[i] = cloneObject(src[i]); //递归赋值
+            } else {
+                o[i] = src[i]; //直接赋值
+            }
+        }
+    }
+    return o;
+}
+ */
 
 var srcObj = {
     a: 1,
@@ -189,7 +211,7 @@ function getObjectLength(obj) {
 
 // 判断是否为邮箱地址,字母开头
 function isEmail(emailStr) {
-    return /^[a-zA-Z\d]+[\w.!#$%^&*()]*@[\d\w]+(\.[a-zA-Z]{2,}){1,2}$/.test(emailStr);
+    return /^[a-zA-Z\d]+[\w.!#$%^&*()]*@\w+(\.[a-zA-Z]{2,}){1,2}$/.test(emailStr);
 }
 
 // 判断是否为手机号
@@ -234,6 +256,13 @@ function addClass(element, newClassName) {
     }
 }
 
+/*
+function addClass(element, newClassName) {
+    var oldClassName = element.className; //获取旧的样式类
+    element.className = oldClassName === "" ? newClassName : oldClassName + " " + newClassName;
+}
+ */
+
 // 移除element中的样式oldClassName
 function removeClass(element, oldClassName) {
     if (element.nodeType === 1 && typeof oldClassName === 'string') {
@@ -276,6 +305,10 @@ function isSiblingNode(element, siblingNode) {
 // 获取element相对于浏览器窗口的位置，返回一个对象{x, y}
 function getPosition(element) {
     // your implement
+    var pos={};
+    pos.x = element.getBoundingClientRect().left + Math.max(document.documentElement.scrollLeft, document.body.scrollLeft);
+    pos.y = element.getBoundingClientRect().top + Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+    return pos;
 }
 
 //js代码放在html最后面这样才可以getElements，放在前面标签都没有加载会为空
