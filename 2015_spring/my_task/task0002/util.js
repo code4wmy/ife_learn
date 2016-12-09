@@ -312,3 +312,73 @@ function getPosition(element) {
 }
 
 //js代码放在html最后面这样才可以getElements，放在前面标签都没有加载会为空
+
+
+//接下来挑战一个mini $，它和之前的$是不兼容的，它
+//应该是document.querySelector的功能子集，在不直接
+//使用document.querySelector的情况下，在你的util.js中完成以下任务：
+function $(selector) {
+    var selector = trim(selector); //去除开头结尾多余空格
+    if (/\s+/.test(selector)) { //有空格，多项选择
+        var Id = /#[\w-]+/.exec(selector);
+        var className = /\.[\w-]+/.exec(selector);
+        var attribute = /[[\w-=]+]/.exec(selector);
+        if (Id && className) { // id+className
+            return getByClass(className[0], getById(Id[0]));
+        }
+        else if (Id && attribute) { // id+attribute
+            return getByAttr(attribute[0], getById(Id[0]));
+        }
+        else {
+            console.log("Not Match!");
+        }
+    }
+    else {//无空格，单选
+        var selectorArr= [];
+        switch (selector[0]) {
+            case "#":
+                selectorArr.push(getById(selector));
+                break;
+            case ".":
+                selectorArr.push(getByClass(selector));
+                break;
+            case "[":
+                selectorArr.push(getByAttr(selector));
+                break;
+            default :
+                selectorArr.push(getByTag(selector));
+        }
+        return selectorArr[0];
+    }
+}
+
+function getById(selector) {
+    return document.getElementById(selector.substring(1));
+}
+
+function getByClass(selector, root=document) {
+    return root.getElementsByClassName(selector.substring(1))[0];
+}
+
+function getByTag(selector) {
+    return document.getElementsByTagName(selector)[0];
+}
+
+function getByAttr(selector, root=document) {
+    var allChilds = root.getElementsByTagName("*");
+    var index = selector.indexOf("=");
+    if (index !== -1) {
+        for (var i = 0; i< allChilds.length; i++) {
+            if (allChilds[i].getAttribute(selector.slice(1,index)) === selector.slice(index+1, -1)) {
+                return allChilds[i];
+            }
+        }
+    }
+    else {
+        for (var i = 0; i< allChilds.length; i++) {
+            if (allChilds[i].getAttribute(selector.slice(1, -1))) {
+                return allChilds[i];
+            }
+        }
+    }
+}
