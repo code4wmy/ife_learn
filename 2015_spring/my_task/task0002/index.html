@@ -8,6 +8,16 @@
     <div><a href="" id="a"></a></div>
     <div>
         <p id="p"></p>
+        <form action="./submit-cat-photo">
+            <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+            <label><input type="radio" name="indoor-outdoor" /> Outdoor</label>
+            <label><input type="checkbox" name="personality" checked />Loving</label>
+            <label><input type="checkbox" name="personality" />Cute</label>
+            <label><input type="checkbox" name="personality" />A</label>
+            <br />
+            <input type="text" placeholder="say something" required />
+            <button type="submit">Submit</button>
+        </form>
     </div>
 </body>
 <script src="util.js"></script>
