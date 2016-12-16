@@ -26,7 +26,7 @@ function uniqArray(arr) {
     var newArr = [];
     //第一种
     /*for(var i=0; i<arr.length;i++) {
-        if(arr.indexOf(arr[i])==i) 
+        if(arr.indexOf(arr[i])==i)
             newArr.push(arr[i]);
     }
     return newArr;
@@ -59,7 +59,7 @@ function isObject(obj){
     if(Object.prototype.toString.call(obj)==='[object Array]' || Object.prototype.toString.call(obj)==='[object Object]')
         return true;
     else
-        return false;           
+        return false;
 }
 
 function cloneObject(obj){
@@ -320,7 +320,7 @@ function getPosition(element) {
 function $(selector) {
     var selector = trim(selector); //去除开头结尾多余空格
     if (/\s+/.test(selector)) { //有空格，多项选择
-        var Id = /#[\w-]+/.exec(selector);
+        var Id        = /#[\w-]+/.exec(selector);
         var className = /\.[\w-]+/.exec(selector);
         var attribute = /[[\w-=]+]/.exec(selector);
         if (Id && className) { // id+className
@@ -381,4 +381,49 @@ function getByAttr(selector, root=document) {
             }
         }
     }
+}
+
+// 事件
+// 给一个element绑定一个针对event事件的响应，响应函数为listener
+function addEvent(element, event, listener) {
+    // your implement
+    if (element.addEventListener) {
+        element.addEventListener(event, listener , false);
+    }
+    else if (element.attechEvent) {
+        element.attechEvent('on' + event, listener);
+    }
+    else {
+        element['on' + event] = listener;
+    }
+}
+
+// 例如：
+function clicklistener(event) {
+    ...
+}
+addEvent($("#doma"), "click", a);
+
+// 移除element对象对于event事件发生时执行listener的响应
+function removeEvent(element, event, listener) {
+    // your implement
+    if (element.removeEventListener) {
+        element.removeEventListener(event, listener);
+    }
+    else if (element.detachEvent) {
+        element.detachEvent('on' + event, listener);
+    }
+    else {
+        element['on' + event] = null;
+    }
+}
+
+// 实现对click事件的绑定
+function addClickEvent(element, listener) {
+    // your implement
+}
+
+// 实现对于按Enter键时的事件绑定
+function addEnterEvent(element, listener) {
+    // your implement
 }

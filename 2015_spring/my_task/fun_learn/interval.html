@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Interval</title>
+</head>
+<body>
+	<h1 id="heading">Hello World!</h1>
+	<script src="jQuery.js"></script>
+	<script>
+		$(document).ready(function() {
+			var leftOffset = 0;
+			var moveHeading = function() {
+				$("#heading").offset({left: leftOffset});
+				// leftOffset += counter;
+				leftOffset += 3;
+				if (leftOffset > 200) {
+					leftOffset = 0;
+				}
+			};
+
+			var intervalId = setInterval(moveHeading, 30);
+			document.onclick = function() {
+				window.clearInterval(intervalId);
+				$("#heading").offset({left: 0});
+			};
+		})
+	</script>
+</body>
+</html>
