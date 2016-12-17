@@ -15,65 +15,71 @@
 	<script src="jQuery.js"></script>
 	<!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.js"></script> -->
 	<script>
-		var clickHandler = function(event) {
-			console.log("Click!" + event.pageX + " " + event.pageY);
-		};
-		$("h1").click(clickHandler);
-	</script>
-<!-- 	<script>
+	var clickHandler = function(event) {
+		var oh1 = document.getElementById('heading');
+		console.log("Click!" + event.pageX + " " + event.pageY);
+		console.log(event.clientX + ',' + event.clientY);
+		console.log(oh1.offsetLeft + ',' + oh1.offsetTop);
+	};
+	$("h1").click(clickHandler);
+</script>
+	<script>
 		$("html").click(function(event) {
+			var oh1 = document.getElementById('heading');
+			var disX = event.clientX - oh1.offsetLeft;
+			var disY = event.clientY - oh1.offsetTop;
 			$("#heading").offset({
 				left: event.pageX,
 				top: event.pageY,
 			});
 		});
-	</script> -->
-	<script>
-		var seconds = 100;
-		var leftOffset = 0;
-		var topOffset = 0;
-		var leftValue = 200;
-		var topValue = 200;
-		var counter = 1;
-		var moveHeading = function() {
-			$("#heading").offset({left: leftOffset});
-			leftOffset += counter;
-			if (leftOffset > 200) {
-				$("#heading").offset({left: 200, top: topOffset});
-				topOffset += counter;
-				if (topOffset > 200) {
-					$("#heading").offset({top: 200, left: leftValue});
-					leftValue -= counter;
-					if (leftValue < 0) {
-						$("#heading").offset({left: 0, top: topValue});
-						topValue -= counter;
-						if (topValue < 0) {
-							$("#heading").offset({left: 0, top: 0});
-						};
+	</script>
+<!-- 	<script>
+	var seconds = 100;
+	var leftOffset = 0;
+	var topOffset = 0;
+	var leftValue = 200;
+	var topValue = 200;
+	var counter = 1;
+	var moveHeading = function() {
+		$("#heading").offset({left: leftOffset});
+		leftOffset += counter;
+		if (leftOffset > 200) {
+			$("#heading").offset({left: 200, top: topOffset});
+			topOffset += counter;
+			if (topOffset > 200) {
+				$("#heading").offset({top: 200, left: leftValue});
+				leftValue -= counter;
+				if (leftValue < 0) {
+					$("#heading").offset({left: 0, top: topValue});
+					topValue -= counter;
+					if (topValue < 0) {
+						$("#heading").offset({left: 0, top: 0});
 					};
 				};
 			};
 		};
-		var intervalId = setInterval(moveHeading, 100);
-		$("#heading").click(function() {
-			/*
-			counter++;
-			console.log(counter - 1);
-			if (counter > 10) {
-				clearInterval(intervalId);
-				$("#heading").text("You Win.");
-			};
-			*/
-			console.log(counter);
-			counter++;
-			seconds -= 1;
+	};
+	var intervalId = setInterval(moveHeading, 100);
+	$("#heading").click(function() {
+		/*
+		counter++;
+		console.log(counter - 1);
+		if (counter > 10) {
 			clearInterval(intervalId);
-			intervalId = setInterval(moveHeading, seconds);
-			if (counter > 10) {
-				clearInterval(intervalId);
-				$("#heading").text("You Win.");
-			}
-		});
-	</script>
+			$("#heading").text("You Win.");
+		};
+		*/
+		console.log(counter);
+		counter++;
+		seconds -= 1;
+		clearInterval(intervalId);
+		intervalId = setInterval(moveHeading, seconds);
+		if (counter > 10) {
+			clearInterval(intervalId);
+			$("#heading").text("You Win.");
+		}
+	});
+</script> -->
 </body>
 </html>

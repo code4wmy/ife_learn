@@ -191,12 +191,11 @@ function trim(str) {
 var arr = ['java', 'c', 'php', 'html'];
 
 function each(arr, fn) {
-    if (Array.isArray(arr) && typeof fn === 'function') {
-        for (var i = 0; i < arr.length; i++) {
-            fn(arr[i], i);
-        }
+    for (var i = 0; i < arr.length; i++) {
+        fn(arr[i], i);
     }
 }
+
 
 function output(item, index) {
     console.log(index + ': ' + item);
@@ -329,6 +328,9 @@ function $(selector) {
         else if (Id && attribute) { // id+attribute
             return getByAttr(attribute[0], getById(Id[0]));
         }
+        else if (className && attribute) {
+            return getByAttr(attribute[0], getByClass(className[0]));
+        }
         else {
             console.log("Not Match!");
         }
@@ -400,15 +402,15 @@ function addEvent(element, event, listener) {
 
 // 例如：
 function clicklistener(event) {
-    ...
+    return null;
 }
-addEvent($("#doma"), "click", a);
+// addEvent($("#doma"), "click", a);
 
 // 移除element对象对于event事件发生时执行listener的响应
 function removeEvent(element, event, listener) {
     // your implement
     if (element.removeEventListener) {
-        element.removeEventListener(event, listener);
+        element.removeEventListener(event, listener, false);
     }
     else if (element.detachEvent) {
         element.detachEvent('on' + event, listener);
@@ -421,9 +423,118 @@ function removeEvent(element, event, listener) {
 // 实现对click事件的绑定
 function addClickEvent(element, listener) {
     // your implement
+    addEvent(element, 'click', listener);
 }
 
 // 实现对于按Enter键时的事件绑定
 function addEnterEvent(element, listener) {
     // your implement
+    addEvent(
+        element,
+        'keydown',
+        function (e) {
+            var oEvent = e || window.event;
+            if (oEvent.keyCode === 13) {
+                listener();
+            }
+        }
+    );
 }
+
+/*
+接下来我们把上面几个函数和$做一下结合，把他们变成$对象的一些方法
+
+addEvent(element, event, listener) -> $.on(element, event, listener);
+removeEvent(element, event, listener) -> $.un(element, event, listener);
+addClickEvent(element, listener) -> $.click(element, listener);
+addEnterEvent(element, listener) -> $.enter(element, listener);
+ */
+
+$.on = function (element, event, listener) {
+    addEvent(element, event, listener);
+}
+$.un = function (element, event, listener) {
+    removeEvent(element, event, listener);
+}
+$.click = function (element, listener) {
+    addClickEvent(element, listener);
+}
+$.enter = function (element, listener) {
+    addEnterEvent(element, listener);
+}
+
+//代理
+function clickListener(event) {
+    console.log(event);
+}
+function showMes() {
+    alert("something");
+}
+function renderList() {
+    $("#list").innerHTML = '<li>new item</li>';
+}
+
+function init() {
+/*    each($("#list").getElementsByTagName('li'), function(item) {
+        $.click(item, clickListener);
+    });*/
+
+    $.click($("#btn"), renderList);
+}
+init();
+/*
+我们增加了一个按钮，当点击按钮时，改变list里面的项目，这个时候你再
+点击一下li，绑定事件不再生效了。那是不是我们每次改变了DOM结构或者内
+容后，都需要重新绑定事件呢？当然不会这么笨，接下来学习一下事件代理，然
+后实现下面新的方法：
+*/
+
+// 事件代理,事件冒泡原理
+function delegateEvent(element, tag, eventName, listener) {
+    // your implement
+    addEvent(
+        element,
+        eventName,
+        function (ev) {
+            var e = ev || window.event;
+            var target = e.target || e.srcElement;
+            if (target.nodeName.toLowerCase() === tag) {
+                listener.call(target, e); //使用call方法修改执行函数中的this指向，现在
+                //this指向触发了事件的HTML节点（可直接使用this.innerHTML返回该节点内容
+            }
+        }
+    )
+}
+
+$.delegate = delegateEvent;
+
+// 使用示例
+// 还是上面那段HTML，实现对list这个ul里面所有li的click事件进行响应
+// $.delegate($("#list"), "li", "click", clickListener);
+
+//估计有同学已经开始吐槽了，函数里面一堆$看着晕啊，那么把我们的事件函数做如下封装：
+$.on = function (selector, event, listener) {
+    // your implement
+    addEvent($(selector), event, listener);
+}
+
+
+$.click = function(selector, listener) {
+    // your implement
+    addClickEvent($(selector), listener);
+}
+
+$.un = function (selector, event, listener) {
+    // your implement
+    removeEvent($(selector), event, listener);
+}
+
+$.delegate = function(selector, tag, event, listener) {
+    // your implement
+    delegateEvent($(selector), tag, event, listener);
+}
+
+// 使用示例：
+// /*$.click("[data-log]", logListener);
+$.on('#btn2', 'click', clickListener);
+$.delegate('#list', "li", "click", clickListener);
