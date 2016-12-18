@@ -622,3 +622,56 @@ $.delegate = function(selector, tag, event, listener) {
 // /*$.click("[data-log]", logListener);
 $.on('#btn2', 'click', clickListener);
 $.delegate('#list', "li", "click", clickListener);
+
+//BOM
+// 判断是否为IE浏览器，返回-1或者版本号
+
+//IE9及以上无法检测
+/*function isIE() {
+    // your implement
+    if (window.addEventListener) {
+        console.log("not ie");
+    }
+    else if (window.attachEvent) {
+        console.log("is ie");
+    }
+    else {
+        console.log("这种情况发生在不支持DHTML的老版本浏览器（现在一般都支持）")
+    }
+}*/
+function isIE() {
+    var ua = window.navigator.userAgent;
+
+    var msie = ua.indexOf('MSIE ');
+    if (msie > 0) {
+        // IE 10 or older => return version number
+        return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+    }
+
+    var trident = ua.indexOf('Trident/');
+    if (trident > 0) {
+        // IE 11 => return version number
+        var rv = ua.indexOf('rv:');
+        return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+    }
+
+    var edge = ua.indexOf('Edge/');
+    if (edge > 0) {
+       // Edge (IE 12+) => return version number
+       return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+    }
+
+    // other browser
+    return false;
+}
+
+// 设置cookie
+function setCookie(cookieName, cookieValue, expiredays) {
+    // your implement
+}
+
+// 获取cookie值
+function getCookie(cookieName) {
+    // your implement
+}
+
