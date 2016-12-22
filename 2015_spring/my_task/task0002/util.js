@@ -2,25 +2,23 @@ var arr = [1, 2, 3, 4];
 var str = "javascript";
 
 function isArray(arr) {
-    document.write(arr instanceof Array);
+    // document.write(arr instanceof Array);
     // return arr instanceof Array;
+    if (Object.prototype.toString.call(arr) === '[object Array]') {
+        return true;
+    }
+    return false;
 }
-
-isArray(arr);
-document.write("<br />");
-
-isArray(str);
-document.write("<br />");
 
 function isFunction(fn) {
     if (typeof fn === "function") {
-        document.write("is a function<br />");
+        // document.write("is a function<br />");
+        return true;
     }
-    else { document.write("is not a function<br />"); }
+        // document.write("is not a function<br />");
+    return false;
 }
 
-isFunction(arr);
-isFunction(isFunction);
 
 function uniqArray(arr) {
     var newArr = [];
@@ -58,8 +56,7 @@ console.log(b);
 function isObject(obj){
     if(Object.prototype.toString.call(obj)==='[object Array]' || Object.prototype.toString.call(obj)==='[object Object]')
         return true;
-    else
-        return false;
+    return false;
 }
 
 function cloneObject(obj){
@@ -225,9 +222,7 @@ function hasClass(element, className) {
     if (classArr.indexOf(className) !== -1) {
         return true;
     }
-    else {
-        return false;
-    }
+    return false;
 }
 
 // 为element增加一个样式名为newClassName的新样式
@@ -244,9 +239,7 @@ function addClass(element, newClassName) {
         }
         return true;
     }
-    else {
-        return false;
-    }
+    return false;
 }
 
 function addClass(element, newClassName) {
@@ -276,9 +269,7 @@ function removeClass(element, oldClassName) {
         }
         return true;
     }
-    else {
-        return false;
-    }
+    return false;
 }
 
 
@@ -295,9 +286,7 @@ function isSiblingNode(element, siblingNode) {
         if (elementArr[i] === siblingNode) {
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 }
 
@@ -668,10 +657,46 @@ function isIE() {
 // 设置cookie
 function setCookie(cookieName, cookieValue, expiredays) {
     // your implement
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + expiredays);
+    document.cookie = cookieName + "=" +cookieValue + ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
 }
 
 // 获取cookie值
 function getCookie(cookieName) {
     // your implement
+    if (document.cookie.length) {
+        var cookieArr = document.cookie.split(';');
+        for (var i = 0; i < cookieArr.length; i++) {
+            var karr = cookieArr[i].split('=');
+            if (karr[0] === cookieName) {
+                return karr[1];
+            }
+    }
+    return '';
 }
 
+function delCookie(cookieName) {
+    setCookie(cookieName, '1', -1);
+}
+
+// 学习Ajax，并尝试自己封装一个Ajax方法。实现如下方法：
+/*
+function ajax(url, options) {
+    // your implement
+}
+
+// 使用示例：
+ajax(
+    'http://localhost:8080/server/ajaxtest',
+    {
+        data: {
+            name: 'simon',
+            password: '123456'
+        },
+        onsuccess: function (responseText, xhr) {
+            console.log(responseText);
+        }
+    }
+);
+ */
