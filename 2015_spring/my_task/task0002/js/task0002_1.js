@@ -1,5 +1,3 @@
-var arr = [1, 2, 3, 4];
-var str = "javascript";
 
 function isArray(arr) {
     // document.write(arr instanceof Array);
@@ -47,9 +45,6 @@ function uniqArray(arr) {
     return newArr;
 }
 
-var a = [1, 3, 5, 7, 5, 3, 1, 7, 11, "a", "b", "a"];
-var b = uniqArray(a);
-console.log(b);
 
 // 使用递归来实现一个深度克隆，可以复制一个目标对象，返回一个完整拷贝
 // 被复制的对象类型会被限制为数字、字符串、布尔、日期、数组、Object对象。不会包含函数、正则对象等
@@ -92,24 +87,6 @@ function cloneObject(src) {
 }
  */
 
-var srcObj = {
-    a: 1,
-    b: {
-        b1: ["hello", "hi"],
-        b2: "JavaScript"
-    }
-};
-var abObj = srcObj;
-var tarObj = cloneObject(srcObj);
-
-srcObj.a = 2;
-srcObj.b.b1[0] = "Hello";
-
-console.log(abObj.a);
-console.log(abObj.b.b1[0]);
-
-console.log(tarObj.a);      // 1
-console.log(tarObj.b.b1[0]);    // "hello"
 
 // guess word
 function play() {
@@ -185,7 +162,6 @@ function trim(str) {
 }
 
 // 实现一个遍历数组的方法，针对数组中每一个元素执行fn函数，并将数组索引和元素作为参数传递
-var arr = ['java', 'c', 'php', 'html'];
 
 function each(arr, fn) {
     for (var i = 0; i < arr.length; i++) {
@@ -226,7 +202,7 @@ function hasClass(element, className) {
 }
 
 // 为element增加一个样式名为newClassName的新样式
-function addClass(element, newClassName) {
+/*function addClass(element, newClassName) {
     if (element.nodeType === 1 && typeof newClassName === 'string') {
         var ourClass = element.getAttribute('class');
         if (ourClass === null) {
@@ -240,7 +216,7 @@ function addClass(element, newClassName) {
         return true;
     }
     return false;
-}
+}*/
 
 function addClass(element, newClassName) {
     if (!hasClass(element, newClassName)) {
@@ -256,7 +232,7 @@ function addClass(element, newClassName) {
  */
 
 // 移除element中的样式oldClassName
-function removeClass(element, oldClassName) {
+/*function removeClass(element, oldClassName) {
     if (element.nodeType === 1 && typeof oldClassName === 'string') {
         var ourClass = element.getAttribute('class');
         if (ourClass !== null) {
@@ -271,7 +247,7 @@ function removeClass(element, oldClassName) {
     }
     return false;
 }
-
+*/
 
 function removeClass(element, oldClassName) {
     if (hasClass(element, oldClassName)) {
@@ -537,24 +513,6 @@ $.enter = function (element, listener) {
 }
 
 //代理
-function clickListener(event) {
-    console.log(event);
-}
-function showMes() {
-    alert("something");
-}
-function renderList() {
-    $("#list").innerHTML = '<li>new item</li>';
-}
-
-function init() {
-/*    each($("#list").getElementsByTagName('li'), function(item) {
-        $.click(item, clickListener);
-    });*/
-
-    $.click($("#btn"), renderList);
-}
-init();
 /*
 我们增加了一个按钮，当点击按钮时，改变list里面的项目，这个时候你再
 点击一下li，绑定事件不再生效了。那是不是我们每次改变了DOM结构或者内
@@ -579,12 +537,6 @@ function delegateEvent(element, tag, eventName, listener) {
     )
 }
 
-// $.delegate = delegateEvent;
-
-// 使用示例
-// 还是上面那段HTML，实现对list这个ul里面所有li的click事件进行响应
-// $.delegate($("#list"), "li", "click", clickListener);
-
 //估计有同学已经开始吐槽了，函数里面一堆$看着晕啊，那么把我们的事件函数做如下封装：
 $.on = function (selector, event, listener) {
     // your implement
@@ -607,10 +559,6 @@ $.delegate = function(selector, tag, event, listener) {
     delegateEvent($(selector), tag, event, listener);
 }
 
-// 使用示例：
-// /*$.click("[data-log]", logListener);
-$.on('#btn2', 'click', clickListener);
-$.delegate('#list', "li", "click", clickListener);
 
 //BOM
 // 判断是否为IE浏览器，返回-1或者版本号
@@ -672,6 +620,7 @@ function getCookie(cookieName) {
             if (karr[0] === cookieName) {
                 return karr[1];
             }
+        }
     }
     return '';
 }
@@ -700,6 +649,7 @@ ajax(
     }
 );
  */
+
 function ajax(url, options) {
     //新建对象
     var oAjax;
@@ -734,12 +684,12 @@ function ajax(url, options) {
     }
     else {
         oAjax.open('POST', url, true);
-        oAjax.setRequestHeader('Content-type': 'application/x-www-form-urlencoded');
+        oAjax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         oAjax.send(param);
     }
 
     //接收返回
-    oAjax.onreadystatechange = function () {
+    oAjax.onreadystatechange = function() {
         if (oAjax.readyState === 4) {
             if (oAjax.status === 200) {
                 options.onsuccess(oAjax.responseText, oAjax);
@@ -753,4 +703,3 @@ function ajax(url, options) {
     }
     return oAjax;
 }
-
