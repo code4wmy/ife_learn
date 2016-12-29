@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>task0002_2</title>
+    <style>
+    body {
+        padding: 40px 0 0 40px;
+    }
+    div {
+        margin-top: 10px;
+        color: red;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    </style>
+</head>
+<body>
+    <h2>按照特定格式YYYY-MM-DD输入年月日</h2>
+    <h4>点击开始倒计时</h4>
+    <input type="text">
+    <button>开始倒计时</button>
+    <div></div>
+    <script type="text/javascript" src="js/task0002_1.js"></script>
+    <script>
+        window.onload = function () {start();};
+
+        function start() {
+            $('input').value = '2017-12-25';
+            $.click('button', clickStart);
+            document.onkeyup = function(e) {
+                var event = e || window.event;
+                if (event.keyCode === 13 || event.keyCode === 32) {
+                    clickStart();
+                }
+            }
+        }
+
+        function clickStart() {
+            var show = $('div');
+            var time = $('input').value.match(/(^\d{4})-(\d{2})-(\d{2}$)/);
+            if (time) {
+                var setTime = new Date(time[1], time[2]-1, time[3]);
+                var now = new Date();
+                var date = setTime.getTime() - now.getTime();
+                var allSeconds = Math.floor(date / 1000);
+                var day = Math.floor(allSeconds / (24 * 60 * 60));
+                var hour = Math.floor(allSeconds / (60 * 60) % 24);
+                var min = Math.floor(allSeconds / 60 % 60);
+                var second = Math.floor(allSeconds % 60);
+                show.innerHTML = "距离" + setTime.getFullYear() + "年" + (setTime.getMonth() + 1) + "月" + setTime.getDate() + "日, 还有" + day + "天" + hour + "小时" + min + "分" + second + "秒";
+                setTimeout(clickStart, 1000);
+                if (date <= 0) {
+                    clearTimeout(clickStart);
+                    show.innerHTML = "时间已到！";
+                }
+            }
+            else {
+                show.innerHTML = "格式错误，请重新输入！";
+            }
+        }
+    </script>
+</body>
+</html>
