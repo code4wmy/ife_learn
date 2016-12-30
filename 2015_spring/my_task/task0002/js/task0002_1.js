@@ -218,18 +218,18 @@ function hasClass(element, className) {
     return false;
 }*/
 
-function addClass(element, newClassName) {
+/*function addClass(element, newClassName) {
     if (!hasClass(element, newClassName)) {
         element.className += ' ' + newClassName;
     }
-}
+}*/
 
-/*
+
 function addClass(element, newClassName) {
     var oldClassName = element.className; //获取旧的样式类
     element.className = oldClassName === "" ? newClassName : oldClassName + " " + newClassName;
 }
- */
+
 
 // 移除element中的样式oldClassName
 /*function removeClass(element, oldClassName) {
