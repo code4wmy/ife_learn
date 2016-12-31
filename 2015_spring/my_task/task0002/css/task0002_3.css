@@ -50,18 +50,23 @@ li:hover {
     left: 0;
 }
 
-.slide-nav ul {
+.slide-nav {
     position: absolute;
     bottom: 5px;
     left: 50%;
-    margin-left: -65px;
+    transform: translateX(-50%);
+}
+
+.slide-nav li:first-child {
+    margin-left: 0;
 }
 
 .slide-nav li {
     display: inline-block;
+    margin-left: 5px;
+    border-radius: 50%;
     width: 15px;
     height: 15px;
-    border-radius: 50%;
     background-color: #fff;
 }
 

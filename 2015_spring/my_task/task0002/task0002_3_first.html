@@ -25,93 +25,12 @@
             <img src="img/5.jpg" alt="">
             <img src="img/6.jpg" alt="">
         </div>
-        <div class="slide-nav">
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
         <div class="slide-control">
             <span class="slide-prev"><</span>
             <span class="slide-next">></span>
         </div>
     </div>
     <script src="js/task0002_1.js"></script>
-    <script>
-        window.onload = function () {
-            slideShow({reverse: 1,});
-        };
-
-        function slideShow(option) {
-            var reverse = option.reverse ? option.reverse : 1;  //确定正反序
-            var oImg = $('.img-container').getElementsByTagName('img');
-            var oLi = $('.slide-nav').getElementsByTagName('li');
-            var imgLen = oImg.length;
-            var index = 0;
-            var id;
-            if (!option.noloop) {
-                show();
-            }
-
-            function show() {
-                if (index < imgLen && index >= 0) {
-                    for (var j = 0; j < imgLen; j++) {
-                        oImg[j].style.display = "none";
-                        removeClass(oLi[j], 'active');
-                    }
-
-                    oImg[index].style.display = "block";
-                    addClass(oLi[index], 'active');
-                    index += reverse;
-                    var speed = option.speed || 3000;
-                    id = setTimeout(show, speed);
-                }
-                else if (index < 0) {
-                    index = imgLen -1;
-                    show();
-                }
-                else {
-                    index = 0;
-                    show();
-                }
-            }
-
-            //li click
-            for (var i = 0; i < oLi.length; i++) {
-                (function (i) {
-                    oLi[i].onclick = function () {
-                        index = i;
-                        clearTimeout(id);
-                        show();
-                    }
-                })(i)
-            }
-
-            //slide-next and slide-prev click
-            $.click('.slide-next', nextClick)
-            $.click('.slide-prev', prevClick)
-
-            function nextClick() {
-                clearTimeout(id);
-                if (reverse === -1) {
-                    index = index + 2;
-                }
-                show();
-            }
-
-            function prevClick() {
-                clearTimeout(id);
-                if (reverse === 1) {
-                    index = index - 2 < 0 ? imgLen - 1 : index - 2;
-                }
-                show();
-            }
-
-        };
-    </script>
+    <script src="js/task0002_3_first.js"></script>
 </body>
 </html>
