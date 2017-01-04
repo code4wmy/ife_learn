@@ -1,8 +1,8 @@
 window.onload = function () {
-    slideShow({reverse: 1,});
+    slideShow({reverse: 1,}, {});
 };
 
-function slideShow(option={}) {
+function slideShow(option) {
     var reverse = option.reverse || 1;  //确定正反序
     var speed = option.speed || 3000;  //速度
 
@@ -43,10 +43,10 @@ function slideShow(option={}) {
     function eleHover() {
         addEvent($('.slide-show'), 'mouseover', function () {
             clearInterval(id);
-        })
+        });
         addEvent($('.slide-show'), 'mouseout', function () {
-            id = setInterval(slide, speed)
-        })
+            id = setInterval(slide, speed);
+        });
     }
 
     //li click
@@ -56,15 +56,15 @@ function slideShow(option={}) {
                 oLi[i].onclick = function () {
                     index = i;
                     slide();
-                }
-            })(i)
+                };
+            })(i);
         }
     }
 
     //slide-next and slide-prev click
     function preNextClick () {
-        $.click('.slide-next', nextClick)
-        $.click('.slide-prev', prevClick)
+        $.click('.slide-next', nextClick);
+        $.click('.slide-prev', prevClick);
 
         function nextClick() {
             if (reverse === -1) {
@@ -99,4 +99,4 @@ function slideShow(option={}) {
         }
     }
 
-};
+}
