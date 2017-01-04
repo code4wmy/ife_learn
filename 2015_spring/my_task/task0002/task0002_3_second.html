@@ -10,73 +10,23 @@
         <h2>轮播图滑动式</h2>
         <h4>函数slideShow()参数为JSON格式，如下：</h4>
         <ol>
-            <li><span>noloop</span>:这个值只要存在就不循环。</li>
-            <li><span>reverse</span>:值为1或者-1，默认为1，正向循环。</li>
+            <!-- <li><span>noloop</span>:这个值只要存在就不循环。</li> -->
+            <li><span>reverse</span>:值为-1时反向播放，其他正向循环。</li>
             <li><span>speed</span>:轮播间隔（单位毫秒），默认为3000.</li>
         </ol>
     </div>
     <div class="slide-show">
-        <div class="img-container">
+        <div class="img-container" style="left: -500px;">
+            <img src="img/5.jpg" alt="">
             <img src="img/1.jpg" alt="">
             <img src="img/2.jpg" alt="">
             <img src="img/3.jpg" alt="">
             <img src="img/4.jpg" alt="">
             <img src="img/5.jpg" alt="">
-            <img src="img/6.jpg" alt="">
+            <img src="img/1.jpg" alt="">
         </div>
     </div>
     <script src="js/task0002_1.js"></script>
-    <script>
-        window.onload = slideShow($('.img-container'));
-
-        function slideShow(element) {
-            var timer = null;
-            var index = 1;
-            var imgs = element.getElementsByTagName('img');
-            var imgsLen = imgs.length;
-            var imgWidth = imgs[0].offsetWidth;
-
-            //add ul-nav
-            var createUl = document.createElement('ul');
-            for (var i = 0; i < imgsLen; i++) {
-                var li = document.createElement('li')
-                createUl.appendChild(li);
-            }
-            addClass(createUl, 'slide-nav');
-            element.parentNode.appendChild(createUl);
-            var oLi = createUl.getElementsByTagName('li');
-            addClass(oLi[0], 'active');
-
-            //add slide-prev and slide-next
-            var createDiv = document.createElement('div');
-            addClass(createDiv, 'slide-control');
-            createDiv.innerHTML = '<span class="slide-prev">&lt;</span><span class="slide-next">&gt;</span>';
-            element.parentNode.appendChild(createDiv);
-
-            timer = setInterval(slide, 3000);
-
-            function slide() {
-                if (index < imgsLen) {
-                    resetLiClass();
-                    element.style.left = -imgWidth * index + 'px';
-                    addClass(oLi[index], 'active');
-                    index ++;
-                }
-                else {
-                    index = 0;
-                    resetLiClass();
-                    element.style.left = -imgWidth * index + 'px';
-                    addClass(oLi[index], 'active');
-                    index ++;
-                }
-            }
-
-            function resetLiClass() {
-                for (var x = 0; x < imgsLen; x++) {
-                    removeClass(oLi[x], 'active');
-                }
-            }
-        }
-    </script>
+    <script src="js/task0002_3_second.js"></script>
 </body>
 </html>

@@ -43,11 +43,9 @@ li:hover {
 
 .img-container {
     position: absolute;
-    left: 0;
 }
 
 .img-container img {
-    display: block;
     float: left;
     width: 500px;
     height: 300px;
@@ -78,10 +76,12 @@ li:hover {
 }
 
 .slide-control span {
+    display: none;
     position: absolute;
     top: 50%;
     margin-top: -28px;
     font-size: 50px;
+    background-color: rgba(0, 0, 0, .3);
     color: #fff;
     cursor: pointer;
 }
@@ -97,4 +97,8 @@ li:hover {
 .slide-control span:hover {
     color: #999;
     background-color: #000;
+}
+
+.slide-show:hover .slide-control span {
+    display: block;
 }

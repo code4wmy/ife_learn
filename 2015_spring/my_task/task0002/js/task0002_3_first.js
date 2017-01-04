@@ -2,7 +2,7 @@ window.onload = function () {
     slideShow({reverse: 1,});
 };
 
-function slideShow(option) {
+function slideShow(option={}) {
     var reverse = option.reverse || 1;  //确定正反序
     var speed = option.speed || 3000;  //速度
 

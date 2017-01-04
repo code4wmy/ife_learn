@@ -89,7 +89,7 @@ function cloneObject(src) {
 
 
 // guess word
-function play() {
+function guessWord() {
     var words = ["java", "html", "css", "python", "node", "swift"];
     var word = words[Math.floor(Math.random() * words.length)];
 
@@ -127,7 +127,7 @@ function play() {
 
 function game() {
     do {
-        play();
+        guessWord();
         var playAgain = confirm("Play again?")
     }
     while (playAgain);
@@ -702,4 +702,18 @@ function ajax(url, options) {
         }
     }
     return oAjax;
+}
+
+/**
+ * 获取当前元素在同级元素的索引
+ * @param   {HTMLElement} element html节点
+ * @returns {number} 索引
+ */
+function getIndex(element) {
+    var aBrother = element.parentNode.children;
+    for (var i = 0, len = aBrother.length; i < len; i++) {
+        if (aBrother[i] == element) {
+            return i;
+        }
+    }
 }
