@@ -52,3 +52,49 @@ li:hover {
     width: 500px;
     height: 300px;
 }
+
+.slide-nav {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.slide-nav li:first-child {
+    margin-left: 0;
+}
+
+.slide-nav li {
+    display: inline-block;
+    margin-left: 5px;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+}
+
+.slide-nav .active {
+    background-color: #000;
+}
+
+.slide-control span {
+    position: absolute;
+    top: 50%;
+    margin-top: -28px;
+    font-size: 50px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.slide-prev {
+    left: 10px;
+}
+
+.slide-next {
+    right: 10px;
+}
+
+.slide-control span:hover {
+    color: #999;
+    background-color: #000;
+}

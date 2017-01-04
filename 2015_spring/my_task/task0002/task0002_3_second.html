@@ -26,5 +26,57 @@
         </div>
     </div>
     <script src="js/task0002_1.js"></script>
+    <script>
+        window.onload = slideShow($('.img-container'));
+
+        function slideShow(element) {
+            var timer = null;
+            var index = 1;
+            var imgs = element.getElementsByTagName('img');
+            var imgsLen = imgs.length;
+            var imgWidth = imgs[0].offsetWidth;
+
+            //add ul-nav
+            var createUl = document.createElement('ul');
+            for (var i = 0; i < imgsLen; i++) {
+                var li = document.createElement('li')
+                createUl.appendChild(li);
+            }
+            addClass(createUl, 'slide-nav');
+            element.parentNode.appendChild(createUl);
+            var oLi = createUl.getElementsByTagName('li');
+            addClass(oLi[0], 'active');
+
+            //add slide-prev and slide-next
+            var createDiv = document.createElement('div');
+            addClass(createDiv, 'slide-control');
+            createDiv.innerHTML = '<span class="slide-prev">&lt;</span><span class="slide-next">&gt;</span>';
+            element.parentNode.appendChild(createDiv);
+
+            timer = setInterval(slide, 3000);
+
+            function slide() {
+                if (index < imgsLen) {
+                    resetLiClass();
+                    element.style.left = -imgWidth * index + 'px';
+                    addClass(oLi[index], 'active');
+                    index ++;
+                }
+                else {
+                    index = 0;
+                    resetLiClass();
+                    element.style.left = -imgWidth * index + 'px';
+                    addClass(oLi[index], 'active');
+                    index ++;
+                }
+            }
+
+            function resetLiClass() {
+                for (var x = 0; x < imgsLen; x++) {
+                    removeClass(oLi[x], 'active');
+                }
+            }
+        }
+    </script>
 </body>
 </html>
