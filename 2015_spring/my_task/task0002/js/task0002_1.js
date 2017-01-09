@@ -128,7 +128,7 @@ function guessWord() {
 function game() {
     do {
         guessWord();
-        var playAgain = confirm("Play again?")
+        var playAgain = confirm("Play again?");
     }
     while (playAgain);
 }
@@ -282,7 +282,7 @@ function getPosition(element) {
 //应该是document.querySelector的功能子集，在不直接
 //使用document.querySelector的情况下，在你的util.js中完成以下任务：
 function $(selector) {
-    var selector = trim(selector); //去除开头结尾多余空格
+    selector = trim(selector); //去除开头结尾多余空格
     if (/\s+/.test(selector)) { //有空格，多项选择
         var Id        = /#[\w-]+/.exec(selector);
         var className = /\.[\w-]+/.exec(selector);
@@ -342,9 +342,9 @@ function getByAttr(selector, root=document) {
         }
     }
     else {
-        for (var i = 0; i< allChilds.length; i++) {
-            if (allChilds[i].getAttribute(selector.slice(1, -1))) {
-                return allChilds[i];
+        for (var j = 0; j< allChilds.length; j++) {
+            if (allChilds[j].getAttribute(selector.slice(1, -1))) {
+                return allChilds[j];
             }
         }
     }
@@ -501,16 +501,16 @@ addEnterEvent(element, listener) -> $.enter(element, listener);
 
 $.on = function (element, event, listener) {
     addEvent(element, event, listener);
-}
+};
 $.un = function (element, event, listener) {
     removeEvent(element, event, listener);
-}
+};
 $.click = function (element, listener) {
     addClickEvent(element, listener);
-}
+};
 $.enter = function (element, listener) {
     addEnterEvent(element, listener);
-}
+};
 
 //代理
 /*
@@ -534,30 +534,30 @@ function delegateEvent(element, tag, eventName, listener) {
                 //this指向触发了事件的HTML节点（可直接使用this.innerHTML返回该节点内容
             }
         }
-    )
+    );
 }
 
 //估计有同学已经开始吐槽了，函数里面一堆$看着晕啊，那么把我们的事件函数做如下封装：
 $.on = function (selector, event, listener) {
     // your implement
     addEvent($(selector), event, listener);
-}
+};
 
 
 $.click = function(selector, listener) {
     // your implement
     addClickEvent($(selector), listener);
-}
+};
 
 $.un = function (selector, event, listener) {
     // your implement
     removeEvent($(selector), event, listener);
-}
+};
 
 $.delegate = function(selector, tag, event, listener) {
     // your implement
     delegateEvent($(selector), tag, event, listener);
-}
+};
 
 
 //BOM
@@ -700,7 +700,7 @@ function ajax(url, options) {
                 }
             }
         }
-    }
+    };
     return oAjax;
 }
 

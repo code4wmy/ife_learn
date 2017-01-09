@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>输入提示框</title>
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 40px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+ul {
+    padding: 30px;
+}
+
+div ul {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+div ul li {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #fff;
+    line-height: 22px;
+    list-style: none;
+}
+
+div input {
+    display: block;
+    height: 22px;
+    width: 200px;
+    line-height: 22px;
+}
+</style>
+<body>
+    <h1>输入框提示:</h1>
+    <ul>
+        <li>数据放在task0002_4.json中,使用AJAX获取</li>
+        <li>允许使用鼠标点击选中提示栏中的某个选项</li>
+        <li>允许使用键盘上下键来选中提示栏中的某个选项，回车确认选中</li>
+        <li>选中后，提示内容变更到输入框中</li>
+    </ul>
+    <h2>输入任意字符:</h2>
+    <div>
+        <input type="text">
+        <ul class="tips"></ul>
+    </div>
+    <script src="js/task0002_1.js"></script>
+    <script>
+        window.onload = ajaxInput();
+
+        function ajaxInput() {
+            var oInput = $('input');
+            var oUl = $('.tips');
+
+            inputChange();
+
+            function inputChange() {
+                var inputValue;
+                if (oInput.addEventListener) {
+                    oInput.addEventListener('input', onInput, false);
+                }
+                else if (oInput.attachEvent) {
+                    oInput.attachEvent('OnPropChanged', propChanged);
+                }
+
+                function onInput(event) {
+                    inputValue = event.target.value;
+                    handleValue(inputValue);
+                }
+
+                function propChanged(event) {
+                    if (event.propertyName.toLowerCase() === 'value') {
+                        inputValue = event.srcElement.value;
+                    }
+                }
+            }
+
+            function handleValue(value) {
+                var reg = new RegExp('^' + value, 'i');
+
+                if (value === '') {
+                    oUl.style.display = 'none';
+                }
+                else {
+                    ajax('task0002_4.json', {onsuccess: showTips});
+                }
+
+                function showTips(data) {
+                    var tipArr = eval(data);
+                    var liEle = '';
+                    for (var i = 0; i < tipArr.length; i++) {
+                        var valueMatched = tipArr[i].match(reg);
+                        if (valueMatched) {
+                            liEle += '<li><span>' + valueMatched[0] + '</span>' + tipArr[i].substr(valueMatched[0].length) + '</li>';
+                        }
+                    }
+                    oUl.innerHTML = liEle;
+                    oUl.style.display = 'block';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
