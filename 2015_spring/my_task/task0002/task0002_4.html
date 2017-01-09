@@ -25,10 +25,19 @@ ul {
     padding: 30px;
 }
 
+div input {
+    display: block;
+    height: 22px;
+    width: 200px;
+    line-height: 22px;
+}
+
 div ul {
     display: none;
     margin: 0;
     padding: 0;
+    width: 220px;
+    background-color: #f1f1f1;
 }
 
 div ul li {
@@ -40,11 +49,12 @@ div ul li {
     list-style: none;
 }
 
-div input {
-    display: block;
-    height: 22px;
-    width: 200px;
-    line-height: 22px;
+.active {
+    background-color: cadetblue;
+}
+
+span {
+    color: orangered;
 }
 </style>
 <body>
@@ -56,7 +66,7 @@ div input {
         <li>选中后，提示内容变更到输入框中</li>
     </ul>
     <h2>输入任意字符:</h2>
-    <div>
+    <div class="txt">
         <input type="text">
         <ul class="tips"></ul>
     </div>
@@ -69,6 +79,8 @@ div input {
             var oUl = $('.tips');
 
             inputChange();
+            mouseEvent();
+            keyEvent();
 
             function inputChange() {
                 var inputValue;
@@ -112,6 +124,71 @@ div input {
                     }
                     oUl.innerHTML = liEle;
                     oUl.style.display = 'block';
+                }
+            }
+
+            function mouseEvent() {
+                //鼠标移入
+                delegateEvent(oUl, 'li', 'mouseover', function () {
+                    removeLiClass();
+                    addClass(this, 'active');
+                });
+                //鼠标移出
+                delegateEvent(oUl, 'li', 'mouseout', function () {
+                    removeClass(this, 'active');
+                });
+                //鼠标点击
+                delegateEvent(oUl, 'li', 'click', function () {
+                    oInput.value = this.innerHTML.replace(/<(\/)?span>/g, '');
+                    oUl.style.display = 'none';
+                });
+            }
+
+            function keyEvent() {
+                addEvent(oInput, 'keydown', function (ev) {
+                    var activeLi = $('.active');
+                    var oEvent = ev || window.event;
+
+                    //up
+                    if (oEvent.keyCode === 38) {
+                        if (activeLi) {
+                            var prevLi = activeLi.previousElementSibling;
+                            if (prevLi) {
+                                removeLiClass();
+                                addClass(prevLi, 'active');
+                            }
+                        }
+                        else {
+                            addClass($('.tips').lastChild, 'active');
+                        }
+                    }
+
+                    //down
+                    if (oEvent.keyCode === 40) {
+                        if (activeLi) {
+                            var nextLi = activeLi.nextElementSibling;
+                            if (nextLi) {
+                                removeClass();
+                                addClass(nextLi, 'active');
+                            }
+                        }
+                        else {
+                            addClass($('.tips').firstChild, 'active');
+                        }
+                    }
+
+                    //enter
+                    if (oEvent.keyCode === 13) {
+                        oInput.value = activeLi.innerHTML.replace(/<(\/)?span>/g, '');
+                        oUl.style.display = 'none';
+                    }
+                });
+            }
+
+            function removeLiClass() {
+                var oLi = oUl.getElementsByTagName('li');
+                for (var i = 0; i < oLi.length; i++) {
+                    oLi[i].className = '';
                 }
             }
         }
