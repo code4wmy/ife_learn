@@ -36,6 +36,7 @@ div ul {
     display: none;
     margin: 0;
     padding: 0;
+    width: 220px;
     background-color: #f1f1f1;
 }
 
@@ -138,7 +139,7 @@ span {
                 });
                 //鼠标点击
                 delegateEvent(oUl, 'li', 'click', function () {
-                    oInput.value = this.innerHTML;
+                    oInput.value = this.innerHTML.replace(/<(\/)?span>/g, '');
                     oUl.style.display = 'none';
                 });
             }
@@ -178,7 +179,7 @@ span {
 
                     //enter
                     if (oEvent.keyCode === 13) {
-                        oInput.value = activeLi.innerHTML;
+                        oInput.value = activeLi.innerHTML.replace(/<(\/)?span>/g, '');
                         oUl.style.display = 'none';
                     }
                 });
