@@ -28,11 +28,8 @@ ul {
 div input {
     display: block;
     height: 22px;
-<<<<<<< HEAD
     width: 220px;
-=======
     width: 200px;
->>>>>>> gh-pages
     line-height: 22px;
 }
 
@@ -139,11 +136,8 @@ span {
                 });
                 //鼠标移出
                 delegateEvent(oUl, 'li', 'mouseout', function () {
-<<<<<<< HEAD
                     removeLiClass(this, 'active');
-=======
                     removeClass(this, 'active');
->>>>>>> gh-pages
                 });
                 //鼠标点击
                 delegateEvent(oUl, 'li', 'click', function () {
@@ -176,11 +170,8 @@ span {
                         if (activeLi) {
                             var nextLi = activeLi.nextElementSibling;
                             if (nextLi) {
-<<<<<<< HEAD
                                 removeLiClass();
-=======
                                 removeClass();
->>>>>>> gh-pages
                                 addClass(nextLi, 'active');
                             }
                         }
