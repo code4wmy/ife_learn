@@ -28,7 +28,7 @@ ul {
 div input {
     display: block;
     height: 22px;
-    width: 200px;
+    width: 220px;
     line-height: 22px;
 }
 
@@ -135,7 +135,7 @@ span {
                 });
                 //鼠标移出
                 delegateEvent(oUl, 'li', 'mouseout', function () {
-                    removeClass(this, 'active');
+                    removeLiClass(this, 'active');
                 });
                 //鼠标点击
                 delegateEvent(oUl, 'li', 'click', function () {
@@ -168,7 +168,7 @@ span {
                         if (activeLi) {
                             var nextLi = activeLi.nextElementSibling;
                             if (nextLi) {
-                                removeClass();
+                                removeLiClass();
                                 addClass(nextLi, 'active');
                             }
                         }
