@@ -281,7 +281,7 @@ function getPosition(element) {
 //接下来挑战一个mini $，它和之前的$是不兼容的，它
 //应该是document.querySelector的功能子集，在不直接
 //使用document.querySelector的情况下，在你的util.js中完成以下任务：
-function $(selector) {
+/*function $(selector) {
     selector = trim(selector); //去除开头结尾多余空格
     if (/\s+/.test(selector)) { //有空格，多项选择
         var Id        = /#[\w-]+/.exec(selector);
@@ -349,7 +349,7 @@ function getByAttr(selector, root=document) {
         }
     }
 }
-
+*/
 
 /* 另一种选择器的写法,简单的迭代.
 
@@ -359,7 +359,7 @@ function getByAttr(selector, root=document) {
  * @param   {object} root     可选参数，selector的父对象。不存在时，为document
  * @returns {Array}  返回获取到的节点数组，需要注意的是使用ID选择器返的也是数组
 
-
+*/
 function VQuery(selector, root) {
     //用来保存选择的元素
     var elements = []; //保存结果节点数组
@@ -406,7 +406,7 @@ function VQuery(selector, root) {
     default: //tagName
         elements = root.getElementsByTagName(selector);
     }
-    return elements
+    return elements;
 }
 
 /**
@@ -414,7 +414,7 @@ function VQuery(selector, root) {
  * @param   {string} selector CSS方式的选择器，支持简单的后代选择器（只支持一级）
  * @returns {object} 返回获取到的第一个节点对象，后代选择器时，返回第一个对象中的第一个符合条件的对象
 
-
+*/
 function $(selector) {
 //这里trim处理输入时两端出现空格的情况，支持ie9+。但是这个函数实现起来也特别简单，可以参考我task0002（-）前面有trim函数的实现。稍微修改一下，这样就没兼容性问题了。
     if (selector == document) {
@@ -431,7 +431,7 @@ function $(selector) {
     }
 }
 
-*/
+
 
 
 // 事件
