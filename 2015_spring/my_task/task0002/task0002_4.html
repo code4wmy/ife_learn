@@ -99,6 +99,7 @@ span {
                 function propChanged(event) {
                     if (event.propertyName.toLowerCase() === 'value') {
                         inputValue = event.srcElement.value;
+                        handleValue(inputValue);
                     }
                 }
             }
