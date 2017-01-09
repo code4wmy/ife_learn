@@ -164,7 +164,7 @@ span {
 
                     //down
                     if (oEvent.keyCode === 40) {
-                        var nextLi = activeLi ? activeLi.previousElementSibling : $('.tips').firstChild;
+                        var nextLi = activeLi ? activeLi.nextElementSibling : $('.tips').firstChild;
                         if (nextLi) {
                             removeLiClass();
                             addClass(nextLi, 'active');
