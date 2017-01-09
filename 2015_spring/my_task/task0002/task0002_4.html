@@ -151,12 +151,10 @@ span {
 
                     //up
                     if (oEvent.keyCode === 38) {
-                        if (activeLi) {
-                            var prevLi = activeLi.previousElementSibling;
-                            if (prevLi) {
-                                removeLiClass();
-                                addClass(prevLi, 'active');
-                            }
+                        var prevLi = activeLi.previousElementSibling;
+                        if (prevLi) {
+                            removeLiClass();
+                            addClass(prevLi, 'active');
                         }
                         else {
                             addClass($('.tips').lastChild, 'active');
@@ -165,12 +163,10 @@ span {
 
                     //down
                     if (oEvent.keyCode === 40) {
-                        if (activeLi) {
-                            var nextLi = activeLi.nextElementSibling;
-                            if (nextLi) {
-                                removeLiClass();
-                                addClass(nextLi, 'active');
-                            }
+                        var nextLi = activeLi.nextElementSibling;
+                        if (nextLi) {
+                            removeLiClass();
+                            addClass(nextLi, 'active');
                         }
                         else {
                             addClass($('.tips').firstChild, 'active');
