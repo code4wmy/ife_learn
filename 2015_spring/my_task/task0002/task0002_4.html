@@ -151,7 +151,7 @@ span {
 
                     //up
                     if (oEvent.keyCode === 38) {
-                        var prevLi = activeLi.previousElementSibling || $('.tips').lastChild;
+                        var prevLi = activeLi ? activeLi.previousElementSibling : $('.tips').lastChild;
                         if (prevLi) {
                             removeLiClass();
                             addClass(prevLi, 'active');
@@ -164,7 +164,7 @@ span {
 
                     //down
                     if (oEvent.keyCode === 40) {
-                        var nextLi = activeLi.nextElementSibling || $('.tips').firstChild;
+                        var nextLi = activeLi ? active.previousElementSibling : $('.tips').firstChild;
                         if (nextLi) {
                             removeLiClass();
                             addClass(nextLi, 'active');
