@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>界面拖拽交互</title>
+    <style>
+        * {margin: 0;padding: 0;}
+        body {padding: 40px;}
+        .title ol {padding-left: 40px;}
+        .title ul {padding-left: 20px;}
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h2>拖拽交互</h2>
+        <h3>效果如下:</h3>
+        <ol>
+            <li>使用js添加随机颜色，便于显示交互</li>
+            <li>存在碰撞时，如下：
+                <ul>
+                    <li>同一父元素中碰撞，交互位置。</li>
+                    <li>不同父元素中碰撞，碰撞到块时，添加到其前。</li>
+                    <li>不同父元素中碰撞，未碰撞到块时，删除原位置块，添加到新的父元素。</li>
+                </ul>
+            </li>
+            <li>不存在碰撞时，回答原位置</li>
+            <li>自动处理原父元素中剩余块位置(自动往下掉)。</li>
+        </ol>
+    </div>
+    <script src="js/task0002_1.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>

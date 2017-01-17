@@ -717,3 +717,18 @@ function getIndex(element) {
         }
     }
 }
+
+//window.onload 按顺序执行多个函数
+//onloadListener(fun1);onloadListener(fun2);onloadListener(fun3)
+function onloadListener(func) {
+    var oldonLoad = window.onload;
+    if (typeof oldonLoad !== "function") {
+        window.onload = func;
+    }
+    else{
+        window.onload = function() {
+            oldonLoad();
+            func();
+        };
+    }
+}
