@@ -6,8 +6,13 @@
     <style>
         * {margin: 0;padding: 0;}
         body {padding: 40px;}
+        .title {margin-bottom: 30px;}
         .title ol {padding-left: 40px;}
         .title ul {padding-left: 20px;}
+        .drag-box {position: relative;width: 600px;height: 600px;}
+        .drag-box ul {float: left;width: 150px;height: 480px;border: 1px solid #444;}
+        .drag-box li {display: block;width: 150px;height: 60px;border-bottom: 1px solid #444;list-style: none;}
+        .ul-right {margin-left: 200px;}
     </style>
 </head>
 <body>
@@ -27,9 +32,41 @@
             <li>自动处理原父元素中剩余块位置(自动往下掉)。</li>
         </ol>
     </div>
+    <div class="drag-box">
+        <ul class="ul-left">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="ul-right">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
     <script src="js/task0002_1.js"></script>
     <script>
+        window.onload = Drag;
 
+        function Drag() {
+            var dragBox = $('.drag-box');
+            var leftUl = $('.ul-left');
+            var rightUl = $('.ul-right');
+            var aLi = dragBox.getElementsByTagName('li');
+
+            changeColor(aLi);
+            function changeColor(element) {
+                for (var i = 0, len = aLi.length; i < len; i++) {
+                    // aLi[i].style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                    // aLi[i].style.backgroundColor = '#' + Math.floor(Math.random()*256).toString(10);
+                    aLi[i].style.backgroundColor = '#' + Math.floor(Math.random()*0xffffff).toString(16);
+                }
+            }
+
+
+        }
     </script>
 </body>
 </html>
