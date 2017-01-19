@@ -10,7 +10,7 @@
         .title ol {padding-left: 40px;}
         .title ul {padding-left: 20px;}
         .drag-box {position: relative;width: 600px;height: 600px;}
-        .drag-box ul {float: left;width: 150px;height: 480px;border: 1px solid #444;}
+        .drag-box ul {float: left;width: 150px;height: 500px;border: 1px solid #444;}
         .drag-box li {display: block;width: 150px;height: 60px;border-bottom: 1px solid #444;list-style: none;}
         .ul-right {margin-left: 200px;}
     </style>
@@ -59,13 +59,49 @@
             changeColor(aLi);
             function changeColor(element) {
                 for (var i = 0, len = aLi.length; i < len; i++) {
-                    // aLi[i].style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                    aLi[i].style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
                     // aLi[i].style.backgroundColor = '#' + Math.floor(Math.random()*256).toString(10);
-                    aLi[i].style.backgroundColor = '#' + Math.floor(Math.random()*0xffffff).toString(16);
+                    // aLi[i].style.backgroundColor = '#' + Math.floor(Math.random()*0xffffff).toString(16);
                 }
             }
 
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].style.position = 'absolute';
+                if (i < 4) {
+                    aLi[i].style.left = 1 + 'px';
+                    aLi[i].style.top = i * 61 + 1 + 'px';
+                    aLi[i].onmousedown = function(ev) {
+                        var clientPos = mousePos(ev);
+                        var m = getIndex(this);
+                        this.onmousemove = function (e) {
+                            var movePos = mousePos(e);
+                            this.style.left = movePos.x - clientPos.x + 'px';
+                            this.style.top = movePos.y  - clientPos.y + m * 61+ 'px' ;
+                        };
+                    };
+                }
+                else {
+                    aLi[i].style.left = 353 + 'px';
+                    aLi[i].style.top = (i - 4) * 61 + 1 + 'px';
+                    aLi[i].onmousedown = function(ev) {
+                        var clientPos = mousePos(ev);
+                        var m = getIndex(this);
+                        this.onmousemove = function (e) {
+                            var movePos = mousePos(e);
+                            this.style.left = movePos.x - clientPos.x + 353 + 'px';
+                            this.style.top = movePos.y  - clientPos.y + m * 61+ 'px' ;
+                        };
+                    };
+                }
+            }
 
+            function mousePos(e) {
+                var event = e || window.event;
+                var mPos = {};
+                mPos.x = event.clientX + window.pageXOffset;
+                mPos.y = event.clientY + window.pageYOffset;
+                return mPos;
+            }
         }
     </script>
 </body>
