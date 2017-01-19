@@ -59,9 +59,9 @@
             changeColor(aLi);
             function changeColor(element) {
                 for (var i = 0, len = aLi.length; i < len; i++) {
-                    aLi[i].style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-                    // aLi[i].style.backgroundColor = '#' + Math.floor(Math.random()*256).toString(10);
-                    // aLi[i].style.backgroundColor = '#' + Math.floor(Math.random()*0xffffff).toString(16);
+                    aLi[i].style.backgroundColor = '#' + ('000000' + Math.floor(Math.random() * 16777215).toString(16)).slice(-6);
+                    // aLi[i].style.backgroundColor = '#'+(Math.random()*0xffffff<<0).toString(16);
+                    // aLi[i].style.backgroundColor = '#' + Math.floor(Math.random() * 0xffffff).toString(16);
                 }
             }
 
@@ -75,10 +75,14 @@
                         var m = getIndex(this);
                         this.onmousemove = function (e) {
                             var movePos = mousePos(e);
+                            this.style.zIndex = 2;
+                            this.style.opacity = "0.5";
                             this.style.left = movePos.x - clientPos.x + 'px';
                             this.style.top = movePos.y  - clientPos.y + m * 61+ 'px' ;
                         };
                     };
+
+                    aLi[i].onmouseup = function() {};
                 }
                 else {
                     aLi[i].style.left = 353 + 'px';
@@ -88,10 +92,14 @@
                         var m = getIndex(this);
                         this.onmousemove = function (e) {
                             var movePos = mousePos(e);
+                            this.style.zIndex = 2;
+                            this.style.opacity = "0.5";
                             this.style.left = movePos.x - clientPos.x + 353 + 'px';
                             this.style.top = movePos.y  - clientPos.y + m * 61+ 'px' ;
                         };
                     };
+
+                    aLi[i].onmouseup = function() {};
                 }
             }
 
