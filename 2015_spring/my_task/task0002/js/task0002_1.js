@@ -441,8 +441,8 @@ function addEvent(element, event, listener) {
     if (element.addEventListener) {
         element.addEventListener(event, listener , false);
     }
-    else if (element.attechEvent) {
-        element.attechEvent('on' + event, listener);
+    else if (element.attachEvent) {
+        element.attachEvent('on' + event, listener);
     }
     else {
         element['on' + event] = listener;
